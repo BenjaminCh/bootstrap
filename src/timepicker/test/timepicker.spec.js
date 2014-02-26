@@ -376,6 +376,11 @@ describe('timepicker directive', function () {
     expect(getModelState()).toEqual([14, 40]);
   });
 
+  it('displays arrows controls by default correctly', function () {
+    $rootScope.$digest();
+    expect(element.find('tr').length).toBe(3);
+  });
+
   describe('attributes', function () {
     beforeEach(function() {
       $rootScope.hstep = 2;
@@ -874,5 +879,36 @@ describe('timepicker directive', function () {
     });
   });
 
+  describe('setting timepickerConfig arrow controls check initial show', function () {
+
+    beforeEach(inject(function(_$compile_, _$rootScope_) {
+      $rootScope.showArrowsControls = true;
+      element = $compile('<timepicker ng-model="time" ng-required="true" show-arrows-controls="showArrowsControls"></timepicker>')($rootScope);
+      $rootScope.$digest();
+    }));
+
+    it('displays arrows controls correctly', function () {
+      $rootScope.$digest();
+      expect(element.find('tr').length).toBe(3);
+    });
+
+  });
+
+  describe('setting timepickerConfig arrow controls check initial hide', function () {
+
+    beforeEach(inject(function(_$compile_, _$rootScope_) {
+      $rootScope.showArrowsControls = false;
+      element = $compile('<timepicker ng-model="time" ng-required="true" show-arrows-controls="showArrowsControls"></timepicker>')($rootScope);
+      $rootScope.$digest();
+    }));
+
+    it('hides arrows controls correctly', function () {
+      $rootScope.$digest();
+      expect(element.find('tr').length).toBe(1);
+    });
+
+  });
+
 });
+
 
