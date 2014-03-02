@@ -31,3 +31,7 @@ All settings can be provided as attributes in the `<timepicker>` or globally con
  * `mousewheel`
  	_(Defaults: true)_ :
  	 Whether user can scroll inside the hours & minutes input to increase or decrease it's values.
+
+ * `showArrowControls`
+ 	_(Defaults: true)_ :
+ 	 Whether to show or hide the up and down control arrows.
