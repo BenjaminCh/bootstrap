@@ -874,5 +874,50 @@ describe('timepicker directive', function () {
     });
   });
 
+  describe('setting timepickerConfig arrow controls visibility', function () {
+
+    beforeEach(inject(function(_$compile_, _$rootScope_, timepickerConfig) {
+      element = $compile('<timepicker ng-model="time" ng-required="true"></timepicker>')($rootScope);
+      $rootScope.$digest();
+    }));
+
+    function getHoursArrowTd(isUp) {
+      return element.find('tr').eq(isUp ? 0 : 2).find('td').eq(0);
+    }
+    function getMinutesArrowTd(isUp) {
+      return element.find('tr').eq(isUp ? 0 : 2).find('td').eq(2);
+    }
+
+    it('hides arrows controls correctly', function () {
+      $rootScope.showArrowControls = false;
+      $rootScope.$digest();
+      var hoursArrowUp = getHoursArrowTd(true);
+      var hoursArrowDown = getHoursArrowTd(false);
+      var minutesArrowUp = getMinutesArrowTd(true);
+      var minutesArrowDown = getMinutesArrowTd(false);
+
+      expect(hoursArrowUp).toBeHidden();
+      expect(hoursArrowDown).toBeHidden();
+      expect(minutesArrowUp).toBeHidden();
+      expect(minutesArrowDown).toBeHidden();
+    });
+
+    it('displays arrows controls correctly', function () {
+      $rootScope.showArrowControls = true;
+      $rootScope.$digest();
+
+      var hoursArrowUp = getHoursArrowTd(true);
+      var hoursArrowDown = getHoursArrowTd(false);
+      var minutesArrowUp = getMinutesArrowTd(true);
+      var minutesArrowDown = getMinutesArrowTd(false);
+
+      expect(hoursArrowUp.hasClass('ng-hide')).toBe(true);
+      expect(hoursArrowDown.hasClass('ng-hide')).toBe(true);
+      expect(minutesArrowUp.hasClass('ng-hide')).toBe(true);
+      expect(minutesArrowDown.hasClass('ng-hide')).toBe(true);
+    });
+
+  });
+
 });
 
