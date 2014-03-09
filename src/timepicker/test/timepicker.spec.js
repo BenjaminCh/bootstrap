@@ -877,7 +877,8 @@ describe('timepicker directive', function () {
   describe('setting timepickerConfig arrow controls visibility', function () {
 
     beforeEach(inject(function(_$compile_, _$rootScope_, timepickerConfig) {
-      element = $compile('<timepicker ng-model="time" ng-required="true"></timepicker>')($rootScope);
+      $rootScope.showArrowsControls = true;
+      element = $compile('<timepicker ng-model="time" ng-required="true" show-arrows-controls="showArrowsControls"></timepicker>')($rootScope);
       $rootScope.$digest();
     }));
 
@@ -888,8 +889,21 @@ describe('timepicker directive', function () {
       return element.find('tr').eq(isUp ? 0 : 2).find('td').eq(2);
     }
 
+    it('displays arrows controls by default correctly', function () {
+      $rootScope.$digest();
+      var hoursArrowUp = getHoursArrowTd(true);
+      var hoursArrowDown = getHoursArrowTd(false);
+      var minutesArrowUp = getMinutesArrowTd(true);
+      var minutesArrowDown = getMinutesArrowTd(false);
+
+      expect(hoursArrowUp).not.toBeHidden();
+      expect(hoursArrowDown).not.toBeHidden();
+      expect(minutesArrowUp).not.toBeHidden();
+      expect(minutesArrowDown).not.toBeHidden();
+    });
+
     it('hides arrows controls correctly', function () {
-      $rootScope.showArrowControls = false;
+      $rootScope.showArrowsControls = false;
       $rootScope.$digest();
       var hoursArrowUp = getHoursArrowTd(true);
       var hoursArrowDown = getHoursArrowTd(false);
@@ -903,7 +917,7 @@ describe('timepicker directive', function () {
     });
 
     it('displays arrows controls correctly', function () {
-      $rootScope.showArrowControls = true;
+      $rootScope.showArrowsControls = true;
       $rootScope.$digest();
 
       var hoursArrowUp = getHoursArrowTd(true);
@@ -911,10 +925,10 @@ describe('timepicker directive', function () {
       var minutesArrowUp = getMinutesArrowTd(true);
       var minutesArrowDown = getMinutesArrowTd(false);
 
-      expect(hoursArrowUp.hasClass('ng-hide')).toBe(true);
-      expect(hoursArrowDown.hasClass('ng-hide')).toBe(true);
-      expect(minutesArrowUp.hasClass('ng-hide')).toBe(true);
-      expect(minutesArrowDown.hasClass('ng-hide')).toBe(true);
+      expect(hoursArrowUp).not.toBeHidden();
+      expect(hoursArrowDown).not.toBeHidden();
+      expect(minutesArrowUp).not.toBeHidden();
+      expect(minutesArrowDown).not.toBeHidden();
     });
 
   });

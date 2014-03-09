@@ -7,7 +7,7 @@ angular.module('ui.bootstrap.timepicker', [])
   meridians: null,
   readonlyInput: false,
   mousewheel: true,
-  showArrowControls: true,
+  showArrowsControls: true,
 })
 
 .controller('TimepickerController', ['$scope', '$attrs', '$parse', '$log', '$locale', 'timepickerConfig', function($scope, $attrs, $parse, $log, $locale, timepickerConfig) {
@@ -61,6 +61,15 @@ angular.module('ui.bootstrap.timepicker', [])
       } else {
         updateTemplate();
       }
+    });
+  }
+
+  // Show / Hide arrows control
+  $scope.showArrowsControls = timepickerConfig.showArrowsControls;
+  if ($attrs.showArrowsControls) {
+    $scope.$parent.$watch($parse($attrs.showArrowsControls), function(value) {
+      $scope.showArrowsControls = !!value;
+      updateTemplate();
     });
   }
 

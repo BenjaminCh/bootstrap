@@ -14,9 +14,9 @@ var TimepickerDemoCtrl = function ($scope) {
     $scope.ismeridian = ! $scope.ismeridian;
   };
 
-  $scope.showArrowControls = true;
+  $scope.showArrowsControls = true;
   $scope.toggleControlArrowsVisibility = function() {
-    $scope.showArrowControls = ! $scope.showArrowControls;
+    $scope.showArrowsControls = ! $scope.showArrowsControls;
   };
 
   $scope.update = function() {
