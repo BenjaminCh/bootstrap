@@ -1,6 +1,6 @@
 <div ng-controller="TimepickerDemoCtrl">
 
-  <timepicker ng-model="mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian" show-arrows-controls="showArrowsControls"></timepicker>
+  <timepicker ng-model="mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
 
   <pre class="alert alert-info">Time is: {{mytime | date:'shortTime' }}</pre>
 
@@ -19,7 +19,6 @@
 
   <button class="btn btn-info" ng-click="toggleMode()">12H / 24H</button>
   <button class="btn btn-default" ng-click="update()">Set to 14:00</button>
-  <button class="btn btn-default" ng-click="toggleControlArrowsVisibility()">Show / Hide control arrows</button>
   <button class="btn btn-danger" ng-click="clear()">Clear</button>
 
 </div>

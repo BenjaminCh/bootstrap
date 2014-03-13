@@ -65,13 +65,7 @@ angular.module('ui.bootstrap.timepicker', [])
   }
 
   // Show / Hide arrows control
-  $scope.showArrowsControls = timepickerConfig.showArrowsControls;
-  if ($attrs.showArrowsControls) {
-    $scope.$parent.$watch($parse($attrs.showArrowsControls), function(value) {
-      $scope.showArrowsControls = !!value;
-      updateTemplate();
-    });
-  }
+  $scope.showArrowsControls = angular.isDefined($attrs.showArrowsControls) ? $scope.$parent.$eval($attrs.showArrowsControls) : timepickerConfig.showArrowsControls;
 
   // Get $scope.hours in 24H mode if valid
   function getHoursFromTemplate ( ) {

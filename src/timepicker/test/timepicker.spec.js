@@ -874,11 +874,10 @@ describe('timepicker directive', function () {
     });
   });
 
-  describe('setting timepickerConfig arrow controls visibility', function () {
+  describe('setting timepickerConfig arrow controls default visibility', function () {
 
     beforeEach(inject(function(_$compile_, _$rootScope_, timepickerConfig) {
-      $rootScope.showArrowsControls = true;
-      element = $compile('<timepicker ng-model="time" ng-required="true" show-arrows-controls="showArrowsControls"></timepicker>')($rootScope);
+      element = $compile('<timepicker ng-model="time" ng-required="true"></timepicker>')($rootScope);
       $rootScope.$digest();
     }));
 
@@ -890,34 +889,6 @@ describe('timepicker directive', function () {
     }
 
     it('displays arrows controls by default correctly', function () {
-      $rootScope.$digest();
-      var hoursArrowUp = getHoursArrowTd(true);
-      var hoursArrowDown = getHoursArrowTd(false);
-      var minutesArrowUp = getMinutesArrowTd(true);
-      var minutesArrowDown = getMinutesArrowTd(false);
-
-      expect(hoursArrowUp).not.toBeHidden();
-      expect(hoursArrowDown).not.toBeHidden();
-      expect(minutesArrowUp).not.toBeHidden();
-      expect(minutesArrowDown).not.toBeHidden();
-    });
-
-    it('hides arrows controls correctly', function () {
-      $rootScope.showArrowsControls = false;
-      $rootScope.$digest();
-      var hoursArrowUp = getHoursArrowTd(true);
-      var hoursArrowDown = getHoursArrowTd(false);
-      var minutesArrowUp = getMinutesArrowTd(true);
-      var minutesArrowDown = getMinutesArrowTd(false);
-
-      expect(hoursArrowUp).toBeHidden();
-      expect(hoursArrowDown).toBeHidden();
-      expect(minutesArrowUp).toBeHidden();
-      expect(minutesArrowDown).toBeHidden();
-    });
-
-    it('displays arrows controls correctly', function () {
-      $rootScope.showArrowsControls = true;
       $rootScope.$digest();
 
       var hoursArrowUp = getHoursArrowTd(true);
@@ -933,5 +904,61 @@ describe('timepicker directive', function () {
 
   });
 
+  describe('setting timepickerConfig arrow controls check initial show', function () {
+
+    beforeEach(inject(function(_$compile_, _$rootScope_, timepickerConfig) {
+      $rootScope.showArrowsControls = true;
+      element = $compile('<timepicker ng-model="time" ng-required="true" show-arrows-controls="showArrowsControls"></timepicker>')($rootScope);
+      $rootScope.$digest();
+    }));
+
+    function getHoursArrowTd(isUp) {
+      return element.find('tr').eq(isUp ? 0 : 2).find('td').eq(0);
+    }
+    function getMinutesArrowTd(isUp) {
+      return element.find('tr').eq(isUp ? 0 : 2).find('td').eq(2);
+    }
+
+    it('displays arrows controls correctly', function () {
+      $rootScope.$digest();
+
+      var hoursArrowUp = getHoursArrowTd(true);
+      var hoursArrowDown = getHoursArrowTd(false);
+      var minutesArrowUp = getMinutesArrowTd(true);
+      var minutesArrowDown = getMinutesArrowTd(false);
+
+      expect(hoursArrowUp).not.toBeHidden();
+      expect(hoursArrowDown).not.toBeHidden();
+      expect(minutesArrowUp).not.toBeHidden();
+      expect(minutesArrowDown).not.toBeHidden();
+    });
+
+  });
+
+  describe('setting timepickerConfig arrow controls check initial hide', function () {
+
+    beforeEach(inject(function(_$compile_, _$rootScope_, timepickerConfig) {
+      $rootScope.showArrowsControls = false;
+      element = $compile('<timepicker ng-model="time" ng-required="true" show-arrows-controls="showArrowsControls"></timepicker>')($rootScope);
+      $rootScope.$digest();
+    }));
+
+    function countElementsTd(isUp) {
+      return element.find('tr').eq(isUp ? 0 : 2).find('td').length;
+    }
+
+    it('hides arrows controls correctly', function () {
+      $rootScope.$digest();
+
+      var upElementsCount = countElementsTd(true);
+      var downElementsCount = countElementsTd(false);
+
+      expect(upElementsCount).toBe(2);
+      expect(downElementsCount).toBe(2);
+    });
+
+  });
+
 });
+
 
