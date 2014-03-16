@@ -14,11 +14,6 @@ var TimepickerDemoCtrl = function ($scope) {
     $scope.ismeridian = ! $scope.ismeridian;
   };
 
-  $scope.showArrowsControls = true;
-  $scope.toggleControlArrowsVisibility = function() {
-    $scope.showArrowsControls = ! $scope.showArrowsControls;
-  };
-
   $scope.update = function() {
     var d = new Date();
     d.setHours( 14 );
