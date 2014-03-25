@@ -944,7 +944,7 @@ describe('timepicker directive', function () {
     }));
 
     function countElementsTd(isUp) {
-      return element.find('tr').eq(isUp ? 0 : 2).find('td').length;
+      return element.find('tr').length;
     }
 
     it('hides arrows controls correctly', function () {
@@ -953,8 +953,8 @@ describe('timepicker directive', function () {
       var upElementsCount = countElementsTd(true);
       var downElementsCount = countElementsTd(false);
 
-      expect(upElementsCount).toBe(2);
-      expect(downElementsCount).toBe(2);
+      expect(upElementsCount).toBe(1);
+      expect(downElementsCount).toBe(1);
     });
 
   });
