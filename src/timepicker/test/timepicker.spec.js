@@ -881,25 +881,18 @@ describe('timepicker directive', function () {
       $rootScope.$digest();
     }));
 
-    function getHoursArrowTd(isUp) {
-      return element.find('tr').eq(isUp ? 0 : 2).find('td').eq(0);
-    }
-    function getMinutesArrowTd(isUp) {
-      return element.find('tr').eq(isUp ? 0 : 2).find('td').eq(2);
+    function countElementsTr(isUp) {
+      return element.find('tr').length;
     }
 
     it('displays arrows controls by default correctly', function () {
       $rootScope.$digest();
 
-      var hoursArrowUp = getHoursArrowTd(true);
-      var hoursArrowDown = getHoursArrowTd(false);
-      var minutesArrowUp = getMinutesArrowTd(true);
-      var minutesArrowDown = getMinutesArrowTd(false);
+      var upElementsCount = countElementsTr(true);
+      var downElementsCount = countElementsTr(false);
 
-      expect(hoursArrowUp).not.toBeHidden();
-      expect(hoursArrowDown).not.toBeHidden();
-      expect(minutesArrowUp).not.toBeHidden();
-      expect(minutesArrowDown).not.toBeHidden();
+      expect(upElementsCount).toBe(3);
+      expect(downElementsCount).toBe(3);
     });
 
   });
@@ -912,25 +905,18 @@ describe('timepicker directive', function () {
       $rootScope.$digest();
     }));
 
-    function getHoursArrowTd(isUp) {
-      return element.find('tr').eq(isUp ? 0 : 2).find('td').eq(0);
-    }
-    function getMinutesArrowTd(isUp) {
-      return element.find('tr').eq(isUp ? 0 : 2).find('td').eq(2);
+    function countElementsTr(isUp) {
+      return element.find('tr').length;
     }
 
     it('displays arrows controls correctly', function () {
       $rootScope.$digest();
 
-      var hoursArrowUp = getHoursArrowTd(true);
-      var hoursArrowDown = getHoursArrowTd(false);
-      var minutesArrowUp = getMinutesArrowTd(true);
-      var minutesArrowDown = getMinutesArrowTd(false);
+      var upElementsCount = countElementsTr(true);
+      var downElementsCount = countElementsTr(false);
 
-      expect(hoursArrowUp).not.toBeHidden();
-      expect(hoursArrowDown).not.toBeHidden();
-      expect(minutesArrowUp).not.toBeHidden();
-      expect(minutesArrowDown).not.toBeHidden();
+      expect(upElementsCount).toBe(3);
+      expect(downElementsCount).toBe(3);
     });
 
   });
@@ -943,15 +929,15 @@ describe('timepicker directive', function () {
       $rootScope.$digest();
     }));
 
-    function countElementsTd(isUp) {
+    function countElementsTr(isUp) {
       return element.find('tr').length;
     }
 
     it('hides arrows controls correctly', function () {
       $rootScope.$digest();
 
-      var upElementsCount = countElementsTd(true);
-      var downElementsCount = countElementsTd(false);
+      var upElementsCount = countElementsTr(true);
+      var downElementsCount = countElementsTr(false);
 
       expect(upElementsCount).toBe(1);
       expect(downElementsCount).toBe(1);
