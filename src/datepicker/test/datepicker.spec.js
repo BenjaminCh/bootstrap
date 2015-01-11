@@ -795,7 +795,6 @@ describe('datepicker directive', function () {
 
   });
 
-<<<<<<< HEAD
   describe('setting datepickerPopupConfig', function() {
     var originalConfig = {};
     beforeEach(inject(function(datepickerPopupConfig) {
@@ -816,8 +815,6 @@ describe('datepicker directive', function () {
 
   });
 
-=======
->>>>>>> 76acfef... refactor(rating): use `track by` in template
   describe('as popup', function () {
     var inputEl, dropdownEl, changeInputValueTo, $document;
 
